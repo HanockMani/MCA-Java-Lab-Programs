@@ -1,38 +1,26 @@
-import java.io.*;
+import java.util.*;
 
-class Palindrome {
-
-	public static int reverse(int Num) {
-		int Rev = 0; 
-		while(Num!=0) {
-			Rev = (Rev*10) + (Num%10);
-			Num = Num/10;
-		}
-		return Rev;
-	}
-
-	public static int palindrome(int Num) {
-		int Rev = reverse(Num);
-		if(Num == Rev)
-			return 1;
+class Palindrome{
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		System.out.print("Enter a string: ");
+		String str = s.nextLine();
+		if(isPalindrome(str))
+			System.out.println("The string "+ str +" is a palindrome."); 
 		else
-			return 0;
+			System.out.println("The string " + str + " is not a palindrome.");
 	}
 	
-	public static void main(String args[]) {
-		DataInputStream dis;
-		dis = new DataInputStream(System.in);
-		int Num;
-		try {
-			System.out.print("\nPalidrome Checker!\n------------------\n Enter a number to check: ");
-			Num = Integer.parseInt(dis.readLine());
-			if(palindrome(Num) == 1)
-				System.out.println("Enterd Number "+Num+ " is Palindrome!");
-			else
-				System.out.println("Enterd Number "+Num+" is not palindrome!");
-		}
-		catch(Exception e) {
-			System.out.println("Error: "+e);
-		}
+	public static boolean isPalindrome(String str) {
+		int left = 0;
+		int right = str.length() - 1;
+        	while (left < right) {
+			if (str.charAt(left) != str.charAt(right)) {
+				return false; 
+			}
+			left++;
+			right--;
+        	}
+		return true;
 	}
 }
